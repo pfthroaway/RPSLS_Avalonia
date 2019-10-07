@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.1;net461</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Views\GameView.xaml" />
+    <AvaloniaResource Remove="Views\SimulateView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Lizard.png" />
+    <None Remove="Assets\Paper.png" />
+    <None Remove="Assets\Rock.png" />
+    <None Remove="Assets\Scissors.png" />
+    <None Remove="Assets\Spock.png" />
+    <None Remove="Views\GameView.xaml" />
+    <None Remove="Views\SimulateView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.8.2" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.2" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Lizard.png" />
+    <EmbeddedResource Include="Assets\Paper.png" />
+    <EmbeddedResource Include="Assets\Rock.png" />
+    <EmbeddedResource Include="Assets\Scissors.png" />
+    <EmbeddedResource Include="Assets\Spock.png" />
+    <EmbeddedResource Include="Views\GameView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SimulateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

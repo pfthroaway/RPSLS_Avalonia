@@ -1,0 +1,16 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="900"
+             x:Class="RPSLS_Avalonia.Views.SimulateView">
+  <Viewbox Stretch="Uniform" Margin="250">
+    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto, Auto, Auto, Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Width="260" Text="How many games would you like to simulate?" TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,10" />
+      <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="150" Text="{Binding Games, Mode=TwoWay}" TextAlignment="Center" Padding="5" Margin="0,0,0,10" />
+      <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" IsChecked="{Binding Reset}" Content="Reset Current Score?" HorizontalAlignment="Center" VerticalContentAlignment="Center"  Margin="0,0,0,10" />
+      <Button Grid.Column="0" Grid.Row="3" Width="125" Content="Simulate" Command="{Binding Ok}" IsDefault="True"  Margin="0,0,20,0" />
+      <Button Grid.Column="1" Grid.Row="3" Width="125" Content="Cancel" Command="{Binding Cancel}" />
+    </Grid>
+  </Viewbox>
+</UserControl>

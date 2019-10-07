@@ -1,0 +1,43 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RPSLS_Avalonia"
+             x:Class="RPSLS_Avalonia.App">
+  <Application.DataTemplates>
+    <local:ViewLocator />
+  </Application.DataTemplates>
+
+  <Application.Styles>
+    <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml" />
+    <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml" />
+    <Style Selector="UserControl">
+      <Setter Property="FontSize" Value="17" />
+      <Setter Property="Background" Value="#1E2124" />
+      <Setter Property="Foreground" Value="#CCCCCC" />
+    </Style>
+    <Style Selector="Window">
+      <Setter Property="FontSize" Value="17" />
+      <Setter Property="Background" Value="#1E2124" />
+      <Setter Property="Foreground" Value="#CCCCCC" />
+      <Setter Property="CanResize" Value="True" />
+      <Setter Property="WindowStartupLocation" Value="CenterScreen" />
+      <Setter Property="SizeToContent" Value="WidthAndHeight" />
+    </Style>
+    <Style Selector="TextBlock">
+      <Setter Property="FontSize" Value="17" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="FontSize" Value="17" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="FontSize" Value="17" />
+      <Setter Property="ClickMode" Value="Press" />
+      <Setter Property="Background" Value="#2F3136" />
+      <Setter Property="Foreground" Value="#CCCCCC" />
+      <Setter Property="BorderThickness" Value="2" />
+      <Setter Property="BorderBrush" Value="#999999" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Padding" Value="1" />
+    </Style>
+  </Application.Styles>
+</Application>

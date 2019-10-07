@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:imaging="clr-namespace:Avalonia.Media.Imaging;assembly=Avalonia.Visuals"
+             mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="900"
+             x:Class="RPSLS_Avalonia.Views.GameView">
+  <UserControl.Styles>
+    <Style Selector="Button">
+      <Setter Property="Background" Value="#1E2124" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+  </UserControl.Styles>
+  <Viewbox Stretch="Uniform">
+    <Grid ColumnDefinitions="Auto, Auto, Auto" RowDefinitions="40, 40, 40, Auto, Auto" Margin="10">
+      <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=PlayerWinsString}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=TieGamesString}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=ComputerWinsString}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=PlayerSelectionString}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <Button Grid.Row="1" Grid.Column="1" Opacity="0" Command="{Binding $parent[Window].DataContext.SimulateGames}" />
+      <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=ComputerSelectionString}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding Path=Result}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <Button Grid.Column="0" Grid.Row="3" Width="192" Height="192" Command="{Binding Rock}"  Margin="50,0,0,0">
+        <Image Source="resm:RPSLS_Avalonia.Assets.Rock.png" />
+      </Button>
+      <Button Grid.Row="3" Grid.Column="1" Width="192" Height="192" Command="{Binding Paper}"  Margin="25,0">
+        <Image Source="resm:RPSLS_Avalonia.Assets.Paper.png" />
+      </Button>
+      <Button Grid.Row="3" Grid.Column="2" Width="192" Height="192" Command="{Binding Scissors}"  Margin="0,0,50,0">
+        <Image Source="resm:RPSLS_Avalonia.Assets.Scissors.png" />
+      </Button>
+      <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Width="192" Height="192" Command="{Binding Lizard}"  Margin="5,5,50,0">
+        <Image Source="resm:RPSLS_Avalonia.Assets.Lizard.png" />
+      </Button>
+      <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="192" Height="192" Command="{Binding Spock}"  Margin="50,5,5,0">
+        <Image Source="resm:RPSLS_Avalonia.Assets.Spock.png" />
+      </Button>
+    </Grid>
+  </Viewbox>
+</UserControl>
