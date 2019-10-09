@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="900"
              x:Class="RPSLS_Avalonia.Views.SimulateView">
-  <Viewbox Stretch="Uniform" Margin="250">
+  <Viewbox Stretch="Uniform" MaxWidth="1440" MaxHeight="900" MinWidth="720" MinHeight="450" Margin="125, 50">
     <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto, Auto, Auto, Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
       <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Width="260" Text="How many games would you like to simulate?" TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,10" />
       <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="150" Text="{Binding Games, Mode=TwoWay}" TextAlignment="Center" Padding="5" Margin="0,0,0,10" />

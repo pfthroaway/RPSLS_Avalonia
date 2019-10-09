@@ -17,25 +17,27 @@ namespace RPSLS_Avalonia.Models
             PlayerSelection = selectedElement;
             ComputerSelection = (Element)RandomNumberGenerator.GenerateRandomNumber(0, 4);
 
-            switch (selectedElement)
+            if (PlayerSelection != ComputerSelection)
             {
-                case Element.Rock:
-                    return Rock();
+                switch (selectedElement)
+                {
+                    case Element.Rock:
+                        return Rock();
 
-                case Element.Paper:
-                    return Paper();
+                    case Element.Paper:
+                        return Paper();
 
-                case Element.Scissors:
-                    return Scissors();
+                    case Element.Scissors:
+                        return Scissors();
 
-                case Element.Lizard:
-                    return Lizard();
+                    case Element.Lizard:
+                        return Lizard();
 
-                case Element.Spock:
-                    return Spock();
+                    case Element.Spock:
+                        return Spock();
+                }
             }
-
-            return null;
+            return new GameResult(PlayerSelection, ComputerSelection, "Tie", "Tie game.");
         }
 
         #region Game Results
@@ -58,9 +60,6 @@ namespace RPSLS_Avalonia.Models
         {
             switch (ComputerSelection)
             {
-                case Element.Rock:
-                    return Tie();
-
                 case Element.Paper:
                     return Lose("Paper covers rock.");
 
@@ -84,9 +83,6 @@ namespace RPSLS_Avalonia.Models
             {
                 case Element.Rock:
                     return Win("Paper covers rock.");
-
-                case Element.Paper:
-                    return Tie();
 
                 case Element.Scissors:
                     return Lose("Scissors cuts paper.");
@@ -112,9 +108,6 @@ namespace RPSLS_Avalonia.Models
                 case Element.Paper:
                     return Win("Scissors cuts paper.");
 
-                case Element.Scissors:
-                    return Tie();
-
                 case Element.Lizard:
                     return Win("Scissors decapitate lizard.");
 
@@ -139,9 +132,6 @@ namespace RPSLS_Avalonia.Models
                 case Element.Scissors:
                     return Lose("Scissors decapitate lizard.");
 
-                case Element.Lizard:
-                    return Tie();
-
                 case Element.Spock:
                     return Win("Lizard poisons Spock.");
             }
@@ -165,9 +155,6 @@ namespace RPSLS_Avalonia.Models
 
                 case Element.Lizard:
                     return Lose("Lizard poisons Spock.");
-
-                case Element.Spock:
-                    return Tie();
             }
 
             return null;
