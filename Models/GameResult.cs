@@ -4,13 +4,13 @@
     public class GameResult
     {
         /// <summary>The player's current selection.</summary>
-        public Element? PlayerSelection { get; set; }
+        public Element? Selection1 { get; set; }
 
         /// <summary>The computer's current selection.</summary>
-        public Element? ComputerSelection { get; set; }
+        public Element? Selection2 { get; set; }
 
-        /// <summary>Winner of the game</summary>
-        public string Winner { get; set; }
+        /// <summary>Winner of the game.</summary>
+        public Element? Winner { get; set; }
 
         /// <summary>Text regarding the result of the game</summary>
         public string ResultText { get; set; }
@@ -20,10 +20,10 @@
         /// <param name="computerSelection">The computer's current selection</param>
         /// <param name="winner">Winner of the game</param>
         /// <param name="resultText">Text regarding the result of the game</param>
-        public GameResult(Element? playerSelection, Element? computerSelection, string winner, string resultText)
+        public GameResult(Element? playerSelection, Element? computerSelection, Element? winner, string resultText)
         {
-            PlayerSelection = playerSelection;
-            ComputerSelection = computerSelection;
+            Selection1 = playerSelection;
+            Selection2 = computerSelection;
             Winner = winner;
             ResultText = resultText;
         }

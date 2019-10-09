@@ -81,24 +81,18 @@ namespace RPSLS_Avalonia.ViewModels
         private void Play(Element selectedElement)
         {
             GameResult result = Game.Play(selectedElement);
-            PlayerSelection = result.PlayerSelection;
-            ComputerSelection = result.ComputerSelection;
+            PlayerSelection = result.Selection1;
+            ComputerSelection = result.Selection2;
             Result = result.ResultText;
-            switch (result.Winner)
+            if (PlayerSelection != ComputerSelection)
             {
-                case "Player":
-
+                if (PlayerSelection == result.Winner)
                     PlayerWins++;
-                    break;
-
-                case "Computer":
+                else
                     ComputerWins++;
-                    break;
-
-                case "Tie":
-                    TieGames++;
-                    break;
             }
+            else
+                TieGames++;
         }
 
         /// <summary>Simulates an amount of games.</summary>

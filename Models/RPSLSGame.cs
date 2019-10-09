@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using RPSLS_Avalonia.Services;
+using System.Collections.Generic;
 
 namespace RPSLS_Avalonia.Models
 {
@@ -7,6 +8,20 @@ namespace RPSLS_Avalonia.Models
     {
         private Element? PlayerSelection;
         private Element? ComputerSelection;
+
+        private readonly List<GameResult> PossibleResults = new List<GameResult>
+        {
+            new GameResult(Element.Rock, Element.Paper, Element.Paper, "Paper covers rock."),
+            new GameResult(Element.Rock, Element.Scissors, Element.Rock, "Rock crushes scissors."),
+            new GameResult(Element.Rock, Element.Lizard, Element.Rock, "Rock crushes lizard."),
+            new GameResult(Element.Rock, Element.Spock,Element.Spock, "Spock vaporizes rock."),
+            new GameResult(Element.Paper, Element.Scissors, Element.Scissors, "Scissors cuts paper."),
+            new GameResult(Element.Paper, Element.Lizard, Element.Lizard, "Lizard eats paper."),
+            new GameResult(Element.Paper, Element.Spock, Element.Paper, "Paper disproves Spock."),
+            new GameResult(Element.Scissors, Element.Lizard, Element.Scissors, "Scissors decapitates lizard."),
+            new GameResult(Element.Scissors, Element.Spock,Element.Spock, "Spock smashes scissors."),
+            new GameResult(Element.Lizard, Element.Spock, Element.Lizard, "Lizard poisons Spock.")
+        };
 
         #region Gameplay
 
@@ -16,149 +31,24 @@ namespace RPSLS_Avalonia.Models
         {
             PlayerSelection = selectedElement;
             ComputerSelection = (Element)RandomNumberGenerator.GenerateRandomNumber(0, 4);
+            if (PlayerSelection == ComputerSelection)
+                return new GameResult(PlayerSelection, ComputerSelection, PlayerSelection, "Tie game.");
+            GameResult ActualResult = PossibleResults.Find(result => (result.Selection1 == PlayerSelection && result.Selection2 == ComputerSelection) || (result.Selection1 == ComputerSelection && result.Selection2 == PlayerSelection));
 
-            if (PlayerSelection != ComputerSelection)
-            {
-                switch (selectedElement)
-                {
-                    case Element.Rock:
-                        return Rock();
-
-                    case Element.Paper:
-                        return Paper();
-
-                    case Element.Scissors:
-                        return Scissors();
-
-                    case Element.Lizard:
-                        return Lizard();
-
-                    case Element.Spock:
-                        return Spock();
-                }
-            }
-            return new GameResult(PlayerSelection, ComputerSelection, "Tie", "Tie game.");
+            return PlayerSelection == ActualResult.Winner ? Win(ActualResult.ResultText) : Lose(ActualResult.ResultText);
         }
 
         #region Game Results
 
         /// <summary>The game resulted in a win for the player.</summary>
         /// <param name="result">Text to be displayed</param>
-        private GameResult Win(string result) => new GameResult(PlayerSelection, ComputerSelection, "Player", $"{result} You win!");
+        private GameResult Win(string result) => new GameResult(PlayerSelection, ComputerSelection, PlayerSelection, $"{result} You win!");
 
         /// <summary>The game resulted in a loss for the player.</summary>
         /// <param name="result">Text to be displayed</param>
-        private GameResult Lose(string result) => new GameResult(PlayerSelection, ComputerSelection, "Computer", $"{result} You lose.");
-
-        /// <summary>The game resulted in tie.</summary>
-        private GameResult Tie() => new GameResult(PlayerSelection, ComputerSelection, "Tie", "Tie game.");
+        private GameResult Lose(string result) => new GameResult(PlayerSelection, ComputerSelection, ComputerSelection, $"{result} You lose.");
 
         #endregion Game Results
-
-        /// <summary>The player selects Rock.</summary>
-        private GameResult Rock()
-        {
-            switch (ComputerSelection)
-            {
-                case Element.Paper:
-                    return Lose("Paper covers rock.");
-
-                case Element.Scissors:
-                    return Win("Rock smashes scissors.");
-
-                case Element.Lizard:
-                    return Win("Rock crushes lizard.");
-
-                case Element.Spock:
-                    return Lose("Spock vaporizes rock.");
-            }
-
-            return null;
-        }
-
-        /// <summary>The player selects Paper.</summary>
-        private GameResult Paper()
-        {
-            switch (ComputerSelection)
-            {
-                case Element.Rock:
-                    return Win("Paper covers rock.");
-
-                case Element.Scissors:
-                    return Lose("Scissors cuts paper.");
-
-                case Element.Lizard:
-                    return Lose("Lizard eats paper.");
-
-                case Element.Spock:
-                    return Win("Paper disproves Spock.");
-            }
-
-            return null;
-        }
-
-        /// <summary>The player selects Scissors.</summary>
-        private GameResult Scissors()
-        {
-            switch (ComputerSelection)
-            {
-                case Element.Rock:
-                    return Lose("Rock smashes scissors.");
-
-                case Element.Paper:
-                    return Win("Scissors cuts paper.");
-
-                case Element.Lizard:
-                    return Win("Scissors decapitate lizard.");
-
-                case Element.Spock:
-                    return Lose("Spock smashes scissors.");
-            }
-
-            return null;
-        }
-
-        /// <summary>The player selects Lizard.</summary>
-        private GameResult Lizard()
-        {
-            switch (ComputerSelection)
-            {
-                case Element.Rock:
-                    return Lose("Rock crushes lizard.");
-
-                case Element.Paper:
-                    return Win("Lizard eats paper.");
-
-                case Element.Scissors:
-                    return Lose("Scissors decapitate lizard.");
-
-                case Element.Spock:
-                    return Win("Lizard poisons Spock.");
-            }
-
-            return null;
-        }
-
-        /// <summary>The player selects Spock.</summary>
-        private GameResult Spock()
-        {
-            switch (ComputerSelection)
-            {
-                case Element.Rock:
-                    return Win("Spock vaporizes rock.");
-
-                case Element.Paper:
-                    return Lose("Paper disproves Spock.");
-
-                case Element.Scissors:
-                    return Win("Spock smashes scissors.");
-
-                case Element.Lizard:
-                    return Lose("Lizard poisons Spock.");
-            }
-
-            return null;
-        }
 
         #endregion Gameplay
     }
